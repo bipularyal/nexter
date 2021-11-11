@@ -1,0 +1,68 @@
+.story{
+
+    &__picture{
+        // background-color: $color-primary;
+        background-image: linear-gradient(rgba($color-primary, 0.5),rgba($color-primary,0.5)),url(../img/back.jpg);
+        grid-column: full-start/col-end 4;
+        display: grid;
+        background-size: cover;
+        /*For the pictures, weset 6 different rows and columns and what we did was position the image in the grid layout the way we needed. we needed 1st image somewhat in center so we stretched it from 2-6 rows and cols and the 2nd one was required in right side and made it become so accordingly*/
+        grid-template-rows: repeat(6,1fr);
+        grid-template-columns: repeat(6,1fr);
+        align-items: center;
+
+        @media only screen and (max-width: $bp-medium){   // at 800px  for the story section we give each part different rows
+            grid-column: 1/-1;
+            padding: 6rem;
+        }
+    }
+    &__img{
+        &-1{
+            width: 100%;
+            grid-row: 2/6;
+            grid-column: 2/6;
+            // Just putting in grid row and grid column doesn't work in case og images because images come with intrinsic aspect ratios and they try to keep that up as much as they can
+
+            box-shadow: 0 2rem 5rem rgba(black, 0.2);
+
+            @media only screen and (max-width: $bp-medium){   // at 800px images are given  different grid styling / are put in different layout
+                grid-column: 1/5;
+                grid-row: 1/-1;
+            }
+        }
+        &-2{
+            width: 115%;  //doing this that is increasing width just made the image increase to the right side 
+            grid-row: 4/6;
+            grid-column: 4/7;
+            z-index: 2;
+            box-shadow: 0 2rem 5rem rgba(black, 0.1);
+        
+            @media only screen and (max-width: $bp-medium){   // at 800px images are given  different grid styling / are put in different layout
+                grid-row: 1/-1;
+                width: 100%;
+            }
+        }
+    }
+    &__content{
+        background-color: $color-grey-light-1;
+        grid-column: col-start 5/full-end;
+        padding: 6rem 8vw;
+
+        //this can also be done using grids by no of col 1 and align-content:center
+        //display: grid;justify-items: start;align-content: center;     
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        @media only screen and (max-width: $bp-medium){   // at 800px  for the story section we give each part different rows
+            grid-column:1/-1;
+            grid-row: 5/6; 
+        }
+    }
+    &__text{
+        font-size: 1.5rem;
+        font-style: italic;
+    }
+
+}

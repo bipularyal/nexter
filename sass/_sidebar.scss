@@ -1,0 +1,40 @@
+.sidebar{
+    background-color: $color-primary;
+    grid-column: sidebar-start/sidebar-end;
+    grid-row:1/-1;
+    display: flex;
+    justify-content: center;  // to align 3 lines in center
+
+    @media only screen and (max-width: $bp-large){   // for screens below 1000px, we remove the sidebar and put the navbar at the top so that's what we're doing removing one column adding one row
+        grid-row: 1/2;
+        grid-column:1/-1; 
+        justify-content: flex-end; 
+        align-items: center;
+    }
+}
+.nav-btn{
+    border-radius: none;
+    border: none;
+    background-color: #fff;
+    height: 2px;
+    width: 3.5rem;
+    margin-top: 4rem;
+    @media only screen and (max-width: $bp-large){   // for screens below 1000px, we remove the sidebar and put the navbar at the top so that's what we're doing removing one column adding one row
+        margin-top: 0;
+        margin-right: 3rem;
+    }
+
+    &::before,&::after{
+        background-color: #fff;
+        height: 2px;
+        width: 3.5rem;
+        content: "";
+        display: block;
+    }
+    &::before{
+        transform: translateY(-1.2rem);
+    }
+    &::after{
+        transform: translateY(1.0rem);
+    }
+}

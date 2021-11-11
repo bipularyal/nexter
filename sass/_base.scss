@@ -1,0 +1,63 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #B28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+// FONT VARIABLES
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+/// RESPONSIVE BREAKPOints
+$bp-largest:75em; //1200px
+$bp-large:62.5em; //1000px
+$bp-medium:50em;  //800px
+$bp-small:37.5em;  //600px
+
+
+
+*,*::before,*::after{
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    @media only screen and (max-width: $bp-largest){
+        font-size: 50%;
+    }
+}
+
+body{ 
+    font-family: $font-primary;
+    color: $color-grey-dark-2;
+    font-weight: 300;
+    line-height: 1.6;
+}
+.container{
+    display: grid;
+    grid-template-rows: 80vh  min-content 40vw repeat(3, min-content); 
+    //min-content means enough spaceto fit all the content 
+    // height of story section is 40% of the viewport width i.e.if width is 1000px the container's height will be 400px 
+    grid-template-columns: [sidebar-start] 6rem [sidebar-end full-start] minmax(3rem,1fr) [center-start] repeat(8, [col-start] minmax(min-content,14rem) [col-end] ) [center-end] minmax(3rem,1fr) [full-end];  
+    //it is a good practice to make a 8/12 or 16 column-width containers for layout so it's easy to position items as well as it can be used in different designs/ different places 
+    //1st 8 rem is the sidebar we want 8 columns with each column's width between their min content and 140px the 2 1fr's is to occupy the remaining space.
+    //the reason we gave 2 1frs instead of justify content is because there are some elements that go from left to right completely so to position those
+    // we also named columns for convenience and so it won't be a huge hassle for us while writing media queries if we needed to change layout
+
+    @media only screen and (max-width: $bp-large){   // for screens below 1000px, we remove the sidebar and put the navbar at the top so that's what we're doing removing one column adding one row
+        grid-template-rows: 6rem /* added new row of height 6 rem for horizontal navbar*/ 80vh  min-content 40vw repeat(3, min-content); 
+        grid-template-columns: [full-start] minmax(3rem,1fr) [center-start] repeat(8, [col-start] minmax(min-content,14rem) [col-end] ) [center-end] minmax(3rem,1fr) [full-end];  
+    }
+    @media only screen and (max-width: $bp-medium){   // at 800px we put realtors in new single row and for the story section we give each part different rows
+        grid-template-rows: 6rem calc(100vh - 6rem) ;  //remaining ones are all min-content and will be placed implicitly
+    }
+
+} 
